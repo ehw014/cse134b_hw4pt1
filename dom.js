@@ -68,14 +68,14 @@ function advWalk() {
 
     el = document.getRootNode();
 
-    while(el != NULL) {
+    while(el != null) {
         el2.insertAdjacentHTML('beforeEnd',`\nLevel: ${nodeType} Name: ${el.nodeName}`);
         if(el.hasChildNodes()) {
             el = el.firstChild;
             level += 1;
         }
         else {
-            while(el.NextSibling == NULL) {
+            while(el.NextSibling == null) {
                 if(el==document.getRootNode())
                     break;
                 el = el.parentNode;
