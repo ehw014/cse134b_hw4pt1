@@ -6,6 +6,11 @@ function init() {
         walk();
     });
 
+    element = document.getElementById('advWalkBtn');
+    element.addEventListener('click', function () {
+        advWalk();
+    });
+
     element = document.getElementById('modifyBtn');
     element.addEventListener('click', function () {
         modify();
@@ -48,12 +53,37 @@ function walk() {
 
 function showNode(el) {
     let el2;
-    el2 = document.getElementById('traversalPrintArea')
+    el2 = document.getElementById('walkPrintArea');
     let nodeType = el.nodeType;
     let nodeName = el.nodeName;
     let nodeValue = el.nodeValue;
 
-    el2.insertAdjacentHTML('beforeEnd',`\nNode type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue})`);
+    el2.insertAdjacentHTML('beforeEnd',`\nNode type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue})\n`);
+}
+
+function advWalk() {
+    let el;
+    let el2 = document.getElementById('advWalkPrintArea');
+    let level = 0;
+
+    el = document.getRootNode();
+
+    while(el != NULL) {
+        el2.insertAdjacentHTML('beforeEnd',`\nLevel: ${nodeType} Name: ${el.nodeName}`);
+        if(el.hasChildNodes()) {
+            el = el.firstChild;
+            level += 1;
+        }
+        else {
+            while(el.NextSibling == NULL) {
+                if(el==document.getRootNode())
+                    break;
+                el = el.parentNode;
+                level -= 1;
+            }
+            el = el.NextSibling;
+        }
+    }
 }
 
 function modify() {
