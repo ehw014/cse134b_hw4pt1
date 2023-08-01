@@ -47,11 +47,13 @@ function walk() {
 }
 
 function showNode(el) {
+    let el2;
+    el2 = document.getElementById('traversalPrintArea')
     let nodeType = el.nodeType;
     let nodeName = el.nodeName;
     let nodeValue = el.nodeValue;
 
-    alert(`Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}`);
+    el2.innerHTML = `Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}`;
 }
 
 function modify() {
