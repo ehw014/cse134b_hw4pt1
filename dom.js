@@ -53,7 +53,7 @@ function showNode(el) {
     let nodeName = el.nodeName;
     let nodeValue = el.nodeValue;
 
-    el2.innerHTML = `Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}`;
+    el2.insertAdjacentHTML('afterEnd',`Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue})`);
 }
 
 function modify() {
