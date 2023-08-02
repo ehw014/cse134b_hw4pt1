@@ -58,33 +58,28 @@ function showNode(el) {
     let nodeName = el.nodeName;
     let nodeValue = el.nodeValue;
 
-    el2.insertAdjacentHTML('beforeEnd',`\nNode type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue})\n`);
+    el2.insertAdjacentHTML('beforeEnd',`\nNode type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}\n`);
 }
 
 function advWalk() {
     let el;
     let el2 = document.getElementById('advWalkPrintArea');
     let level = 0;
-
     el = document.getRootNode();
-
-    while(el != null) {
-        el2.insertAdjacentHTML('beforeEnd',`\nLevel: ${level} Name: ${el.nodeName}`);
-        if(el.hasChildNodes()) {
-            el = el.firstChild;
-            level += 1;
-        }
-        else {
-            while(el.NextSibling == null) {
-                if(el==document.getRootNode())
-                    break;
-                el = el.parentNode;
-                level -= 1;
-            }
-            el = el.NextSibling;
-        }
-    }
+    advWalkRecurse(el, el2, level);
 }
+
+function advWalkRecurse(node, printNode, level) {
+    if(node.hasChildNodes()){
+        node.childNodes.forEach(element => advWalkRecurse(element, printNode, level+1));
+    }
+    let whitespaces = "";
+    for(let i =0; i < level * 4; i++) {
+        whitespaces += "&nbsp";
+    }
+    printNode.insertAdjacentHTML('beforeEnd',`${whitespaces}${node.nodeName}\n`);
+}
+
 
 function modify() {
     let el = document.getElementById('p1');
