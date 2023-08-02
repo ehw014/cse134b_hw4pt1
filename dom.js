@@ -16,6 +16,11 @@ function init() {
         modify();
     });
 
+    element = document.getElementById('advModifyBtn');
+    element.addEventListener('click', function () {
+        advModify();
+    });
+
     element = document.getElementById('addBtn');
     element.addEventListener('click', function () {
         add();
@@ -102,6 +107,32 @@ function modify() {
     el.dataset.cool = 'true';       // data-cool="true"
     el.dataset.coolFactor = '9000'; //data-cool-factor="9000"
 
+}
+
+function advModify() { 
+    let h1 = document.querySelector("h1");
+    h1.innerHTML = "DOM Manipulation is Fun!";
+
+
+
+    let randomColors = [];
+    let root = document.querySelector(":root");
+    randomColors.push(root.style.getPropertyValue("--darkcolor1"));
+    h1.style.color = root.style.getPropertyValue("--darkcolor3");
+    console.log(root.getAttribute("--darkcolor1"));
+
+    /*
+    let randomColors = [];
+    let root = document.querySelector(":root");
+    randomColors.push(root.style.getPropertyValue("--darkcolor1"));
+    randomColors.push(root.style.getPropertyValue("--darkcolor2"));
+    randomColors.push(root.style.getPropertyValue("--darkcolor3"));
+    randomColors.push(root.style.getPropertyValue("--darkcolor4"));
+    randomColors.push(root.style.getPropertyValue("--darkcolor5"));
+    randomColors.push(root.style.getPropertyValue("--darkcolor6"));
+    alert(randomColors[Math.floor(math.random()*6)]);
+    h1.style.color = randomColors[Math.floor(Math.random()* 6)];
+    */
 }
 
 function add() {
