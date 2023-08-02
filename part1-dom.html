@@ -52,9 +52,21 @@
             animation-direction: alternate;
         }
         .schmancy {
-            background-image: url(/../grass.jpg);
-            background-color: #00aa00;
+            animation-name: wiggle;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            transform-origin: left;
+
         }
+        @keyframes wiggle {
+            0%, 7% {transform: rotateZ(0);}
+            15% {transform: rotateZ(-15deg);}
+            20% {transform: rotateZ(10deg);}
+            25% {transform: rotateZ(-10deg);}
+            30% {transform: rotateZ(6deg);}
+            35% {transform: rotateZ(-4deg);}
+            60%, 100% {transform: rotateZ(0);}
+}
 
         @keyframes backgroundColorPalette {
             0% {background: var(--color1);}
@@ -115,6 +127,17 @@
         <label for="addBtn">Basic Addition</label>
         <input type="button" id="addBtn" value="Add">
 
+        <label for="addEleSel">DOM Element Creation</label>
+        <select id="addEleSel">
+            <option value="text">Text</option>
+            <option value="comment">Comment</option>
+            <option value="element">Element</option>
+        </select>
+        <input type="text" id="addEle1" placeholder="Add content here">
+        <input type="text" id="addEle2" placeholder="Put tag name of Element" hidden="true">
+        <input type="button" id="addEleBtn" value="Add DOM Element">
+
+
         <!--
             Q3) Add a select menu that allows you to add a new element to the DOM.  The select menu should have the following options: Text Node, Comment, and Element. When you select one of these options and click the button, the appropriate element should be added to the DOM.  You may want to define an output tag to put the newly created elements in it and style it in a fashion with a border or background color, so you can tell it is new content.  You will need a corresponding text field to define the contents of the text node, comment text, or tag name you want to insert.  By default set the text of any added element to say "New Element" or "New Comment" or "New Text Node" depending on the type of element you are adding but add in the current date and time using a JS Date object.  You can use the toLocaleString() method to get a nicely formatted date and time string.
 
@@ -125,6 +148,13 @@
         <legend>Remove</legend>
         <label for="removeBtn">Simple Delete</label>
         <input type="button" id="removeBtn" value="Remove">
+
+        <label for="removeAllBtn">Delete All</label>
+        <input type="button" id="removeAllBtn" value="RemoveAll">
+
+        <label for="removeSelBtn">Delete Selected</label>
+        <input type="text" id="removeSelField">
+        <input type="button" id="removeSelBtn" value="RemoveSelected">
         <!--
 
           Q4a) Safe Delete

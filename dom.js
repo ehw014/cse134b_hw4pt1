@@ -30,6 +30,26 @@ function init() {
     element.addEventListener('click', function () {
         remove();
     });
+
+    element = document.getElementById('removeAllBtn');
+    element.addEventListener('click', function () {
+        removeAll();
+    });
+
+    element = document.getElementById('removeSelBtn');
+    element.addEventListener('click', function () {
+        removeSel();
+    });
+
+    element = document.getElementById('addEleBtn');
+    element.addEventListener('click', function () {
+        addEle();
+    });
+
+    element = document.getElementById('addEleSel');
+    element.addEventListener('change', function () {
+        updateAddInputs();
+    });
 }
 
 function walk() {
@@ -119,21 +139,11 @@ function advModify() {
     h1.style.color = rootStyle.getPropertyValue("--darkcolor".concat(Math.ceil(Math.random()*6)));
 
     let pOne = document.getElementById("p1");
-    pOne.classList.add("schmancy");
-
-
-    /*
-    let randomColors = [];
-    let root = document.querySelector(":root");
-    randomColors.push(root.style.getPropertyValue("--darkcolor1"));
-    randomColors.push(root.style.getPropertyValue("--darkcolor2"));
-    randomColors.push(root.style.getPropertyValue("--darkcolor3"));
-    randomColors.push(root.style.getPropertyValue("--darkcolor4"));
-    randomColors.push(root.style.getPropertyValue("--darkcolor5"));
-    randomColors.push(root.style.getPropertyValue("--darkcolor6"));
-    alert(randomColors[Math.floor(math.random()*6)]);
-    h1.style.color = randomColors[Math.floor(Math.random()* 6)];
-    */
+    if(pOne.classList.contains("schmancy")) {
+        pOne.classList.remove("schmancy");
+    }
+    else
+        pOne.classList.add("schmancy");
 }
 
 function add() {
@@ -162,8 +172,52 @@ function add() {
     // clearly short hands are pretty easy!
 }
 
+function addEle() {
+    let input1 = document.getElementById("addEle1");
+    let addType = doucment.getElementById("addEleSel");
+    let toMake;
+
+    if(addType.value =="text") {
+
+    }
+    else if(addType.value =="comment"){
+
+    }
+    else {
+        
+    }
+}
+function updateAddInputs() {
+    let el = document.getElementById("addEleSel");
+    let el2 = document.getElementById("addEle2");
+    if(el.value == "element")
+        el2.hidden = false;
+    else
+        el2.hidden = true;
+
+}
+
+
 function remove() {
   document.body.removeChild(document.body.lastChild);
+}
+function removeAll() {
+    let controlNode = document.getElementById("controls");
+    let allElements = document.getElementsByTagName("*");
+    for(let i = 0; i < allElements.length; i++) {
+        if( !(controlNode.contains(allElements[i])) && !(allElements[i].contains(controlNode)) ) {
+            allElements[i].remove();
+        }
+
+    }
+}
+
+function removeSel() {
+    let removeField = document.getElementById("removeSelField");
+    let toRemove = document.querySelectorAll(removeField.value);
+    for(let i =0; i<toRemove.length; i++){
+        toRemove[i].remove();
+    }
 }
 
 window.addEventListener('DOMContentLoaded', init);
