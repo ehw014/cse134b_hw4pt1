@@ -75,14 +75,15 @@ function advWalk() {
 }
 
 function advWalkRecurse(node, printNode, level) {
-    if(node.hasChildNodes()){
-        node.childNodes.forEach(element => advWalkRecurse(element, printNode, level+1));
-    }
     let whitespaces = "";
     for(let i =0; i < level * 4; i++) {
         whitespaces += "&nbsp";
     }
     printNode.insertAdjacentHTML('beforeEnd',`${whitespaces}${node.nodeName}\n`);
+    if(node.hasChildNodes()){
+        node.childNodes.forEach(element => advWalkRecurse(element, printNode, level+1));
+    }
+
 }
 
 
@@ -113,13 +114,13 @@ function advModify() {
     let h1 = document.querySelector("h1");
     h1.innerHTML = "DOM Manipulation is Fun!";
 
-
-
-    let randomColors = [];
     let root = document.querySelector(":root");
-    randomColors.push(root.style.getPropertyValue("--darkcolor1"));
-    h1.style.color = root.style.getPropertyValue("--darkcolor3");
-    console.log(root.getAttribute("--darkcolor1"));
+    let rootStyle = getComputedStyle(root);
+    h1.style.color = rootStyle.getPropertyValue("--darkcolor".concat(Math.ceil(Math.random()*6)));
+
+    let pOne = document.getElementById("p1");
+    pOne.classList.add("schmancy");
+
 
     /*
     let randomColors = [];
