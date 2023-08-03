@@ -50,6 +50,11 @@ function init() {
     element.addEventListener('change', function () {
         updateAddInputs();
     });
+
+    element = document.getElementById('cloneBtn');
+    element.addEventListener('click', function () {
+        simpleClone();
+    });
 }
 
 function walk() {
@@ -180,17 +185,16 @@ function addEle() {
     let appendingObj = document.getElementById("addEleBtn");
 
     if(addType.value =="text") {
+        toMake = document.createElement("p");
         if(input1.value == "")
-            toMake = document.createTextNode("New Text Node "+ currentDate.toLocaleDateString());
+            toMake.appendChild(document.createTextNode("New Text Node "+ currentDate.toLocaleDateString()));
         else
-            toMake = document.createTextNode(input1.value);
-        toMake.classList.add("new_output");
-        appendingObj.insertAdjacentElement('afterend',toMake);
+            toMake.appendChild(document.createTextNode(input1.value));
     }
     else if(addType.value =="element"){
         let input2 = document.getElementById("addEle2");
         if(input2.value == "")
-            toMake = document.createElement("p");
+            toMake = document.createElement("span");
         else
             toMake = document.createElement(input2.value);      
         let elementText;
@@ -199,18 +203,16 @@ function addEle() {
         else
             elementText = document.createTextNode(input1.value);
         toMake.appendChild(elementText);
-        toMake.classList.add("new_output");
-        appendingObj.insertAdjacentElement('afterend',toMake);
     }
     else {
+        toMake = document.createElement("span");
         if(input1.value == "")
-            toMake = document.createComment("New Comment "+ currentDate.toLocaleDateString());
+            toMake.appendChild(document.createComment("New Comment "+ currentDate.toLocaleDateString()));
         else
-            toMake = document.createComment(input1.value);
-        toMake.classList.add("new_output");
-        appendingObj.insertAdjacentElement('afterend',toMake);
+            toMake.appendChild(document.createComment(input1.value));
     }
-
+    toMake.classList.add("new_output");
+    appendingObj.insertAdjacentElement('afterend',toMake);
 }
 function updateAddInputs() {
     let el = document.getElementById("addEleSel");
@@ -243,6 +245,16 @@ function removeSel() {
     for(let i =0; i<toRemove.length; i++){
         toRemove[i].remove();
     }
+}
+
+function simpleClone() {
+    let el = document.getElementById("p1");
+    let el2 = el.cloneNode(true);
+    el2.id = "p1_clone";
+
+    let toPalce = document.getElementById("cloneBtn");
+    toPalce.insertAdjacentElement('afterend', el2);
+
 }
 
 window.addEventListener('DOMContentLoaded', init);
