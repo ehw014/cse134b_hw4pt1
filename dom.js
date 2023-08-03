@@ -174,18 +174,43 @@ function add() {
 
 function addEle() {
     let input1 = document.getElementById("addEle1");
-    let addType = doucment.getElementById("addEleSel");
+    let addType = document.getElementById("addEleSel");
     let toMake;
+    let currentDate = new Date();
+    let appendingObj = document.getElementById("addEleBtn");
 
     if(addType.value =="text") {
-
+        if(input1.value == "")
+            toMake = document.createTextNode("New Text Node "+ currentDate.toLocaleDateString());
+        else
+            toMake = document.createTextNode(input1.value);
+        toMake.classList.add("new_output");
+        appendingObj.insertAdjacentElement('afterend',toMake);
     }
-    else if(addType.value =="comment"){
-
+    else if(addType.value =="element"){
+        let input2 = document.getElementById("addEle2");
+        if(input2.value == "")
+            toMake = document.createElement("p");
+        else
+            toMake = document.createElement(input2.value);      
+        let elementText;
+        if(input1.value == "")
+            elementText = document.createTextNode("New Element "+ currentDate.toLocaleDateString());
+        else
+            elementText = document.createTextNode(input1.value);
+        toMake.appendChild(elementText);
+        toMake.classList.add("new_output");
+        appendingObj.insertAdjacentElement('afterend',toMake);
     }
     else {
-        
+        if(input1.value == "")
+            toMake = document.createComment("New Comment "+ currentDate.toLocaleDateString());
+        else
+            toMake = document.createComment(input1.value);
+        toMake.classList.add("new_output");
+        appendingObj.insertAdjacentElement('afterend',toMake);
     }
+
 }
 function updateAddInputs() {
     let el = document.getElementById("addEleSel");
