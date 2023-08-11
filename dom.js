@@ -178,6 +178,7 @@ function add() {
 }
 
 function addEle() {
+    let popo;
     let input1 = document.getElementById("addEle1");
     let addType = document.getElementById("addEleSel");
     let toMake;
